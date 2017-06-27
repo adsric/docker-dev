@@ -2,16 +2,25 @@ FROM php:7-fpm
 
 RUN apt-get update \
     && apt-get install -y \
+        git \
+        libcurl4-gnutls-dev \
         libfreetype6-dev \
+        libicu-dev \
         libjpeg62-turbo-dev \
         libpng12-dev \
+        libxml2-dev \
         libz-dev \
         less \
         mysql-client \
     && docker-php-ext-install -j$(nproc) \
+        curl \
+        intl \
+        json \
+        mbstring \
         mysqli \
         pdo \
         pdo_mysql \
+        xml \
         zip \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd \
