@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  database:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: docker
+      MYSQL_DATABASE: docker_dev
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./database:/docker-entrypoint-initdb.d"
+
+  php:
+    build: provision/php
+    depends_on:
+      - database
+    restart: always
+    ports:
+      - "9000:9000"
+    volumes:
+      - "./www:/var/www/html/"
+      - "./database:/var/www/database"
+
+  web:
+    build: provision/web
+    depends_on:
+      - php
+    links:
+      - php
+      - database
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "./www:/var/www/html/"
+      - "./database:/var/www/database"
