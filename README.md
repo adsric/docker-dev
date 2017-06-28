@@ -138,19 +138,23 @@ while because docker needs to download the images and build the containers.
 
 ### Connect
 
-By default this project will be served on the address: [localhost](http://localhost)
+By default this project will be served on the address: [localhost](http://localhost)\
 
-**Configure the database connection with the following:**
+#### Connect the database
 
-* _Database Host_: `database`
-* _Database Name_: `docker_dev`
-* _Database User_: `root`
-* _Database Password_: `docker`
+* _MYSQL Database Host_: `database`
+* _MYSQL Database_: `docker_dev`
+* _MYSQL Root User_: `root`
+* _MYSQL Root Password_: `docker`
 
-OR edit the `docker-compose.yml` with your desired configuration.
+_OR_ edit the `docker-compose.yml` with your desired configuration.
 
 Because we are using **Docker for Mac**, the database is available
 at localhost:3306 for applications like "Sequel Pro".
+
+#### Creating database dumps
+
+docker exec some-mariadb sh -c 'exec mysqldump --all-databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > /var/www/html/all-databases.sql
 
 ### Misc
 
@@ -170,4 +174,4 @@ This project, has been set up to provide the necessary parts of an environment
 using the most simple container possible, however if you want add other
 containers or change the infrastructure.
 
-Then this project is super friendly so go for it!
+**Go for it!**
