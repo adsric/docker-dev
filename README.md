@@ -154,7 +154,7 @@ at localhost:3306 for applications like "Sequel Pro".
 
 #### Creating database dumps
 
-`docker exec some-mariadb sh -c 'exec mysqldump --all-databases -uroot -p "$MYSQL_ROOT_PASSWORD"' > /some/path/on/your/host/all-databases.sql`
+`docker exec some-mariadb sh -c 'exec mysqldump --all-databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > /some/path/on/your/host/all-databases.sql`
 
 ### Misc
 
