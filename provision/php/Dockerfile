@@ -1,39 +1,39 @@
 FROM php:7-fpm
 
 RUN apt-get update \
-    && apt-get install -y \
-        git \
-        libcurl4-gnutls-dev \
-        libfreetype6-dev \
-        libicu-dev \
-        libjpeg62-turbo-dev \
-        libpng12-dev \
-        libxml2-dev \
-        libz-dev \
-        less \
-        mysql-client \
-    && docker-php-ext-install -j$(nproc) \
-        curl \
-        intl \
-        json \
-        mbstring \
-        mysqli \
-        pdo \
-        pdo_mysql \
-        xml \
-        zip \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install -j$(nproc) gd \
-    && pecl install xdebug \
-    && docker-php-ext-enable xdebug \
-    && apt-get remove -y build-essential libz-dev \
-    && apt-get autoremove -y \
-    && apt-get clean
+	&& apt-get install -y \
+		git \
+		libcurl4-gnutls-dev \
+		libfreetype6-dev \
+		libicu-dev \
+		libjpeg62-turbo-dev \
+		libpng12-dev \
+		libxml2-dev \
+		libz-dev \
+		less \
+		mysql-client \
+	&& docker-php-ext-install -j$(nproc) \
+		curl \
+		intl \
+		json \
+		mbstring \
+		mysqli \
+		pdo \
+		pdo_mysql \
+		xml \
+		zip \
+	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+	&& docker-php-ext-install -j$(nproc) gd \
+	&& pecl install xdebug \
+	&& docker-php-ext-enable xdebug \
+	&& apt-get remove -y build-essential libz-dev \
+	&& apt-get autoremove -y \
+	&& apt-get clean
 
 # Configure PHP
 RUN echo -e "max_execution_time = 6000\n\
 memory_limit = 120M\n\
-upload_max_filesize = 2M\n\
+upload_max_filesize = 10M\n\
 max_file_uploads = 20\n\
 default_charset = \"UTF-8\"\n\
 date.timezone = \"Europe/Brussels\"\n\
