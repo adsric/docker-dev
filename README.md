@@ -81,7 +81,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - "./database:/docker-entrypoint-initdb.d"
+      - "./database/dump:/docker-entrypoint-initdb.d"
 
   php:
     build: provision/php
@@ -154,7 +154,26 @@ at localhost:3306 for applications like "Sequel Pro".
 
 #### Creating database dumps
 
-`docker exec some-mariadb sh -c 'exec mysqldump --all-databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > /some/path/on/your/host/all-databases.sql`
+The command is:
+
+`docker exec mariadb-container sh -c 'exec mysqldump --all-databases -uroot -p "$MYSQL_ROOT_PASSWORD"' > /some/path/on/your/host/all-databases.sql`
+
+The command to create a dump for docker_dev is:
+
+`docker exec mariadb-container sh -c 'exec mysqldump --databases "docker_dev" -uroot -p "docker"' > /some/path/on/your/host/database.sql
+
+#### Persistent database data
+
+For persistent database edit the `docker-compose.yml` and amend with the
+configuration below.
+
+```
+
+volumes:
+  - "./database:/docker-entrypoint-initdb.d"
+  - "./database/db:/var/lib/mysql"
+
+```
 
 ### Misc
 
