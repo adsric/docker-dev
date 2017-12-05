@@ -170,7 +170,7 @@ configuration below.
 ```
 
 volumes:
-  - "./database:/docker-entrypoint-initdb.d"
+  - "./database/dump:/docker-entrypoint-initdb.d"
   - "./database/db:/var/lib/mysql"
 
 ```
