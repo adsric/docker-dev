@@ -1,14 +1,11 @@
-# Docker for dev
+# Development using Docker
 
-> Docker for local development.
+The repository contains a LEMP stack setup in docker for local development on a
+Mac and documentation describing how to install and use [Docker](http://docker.com)
+as part of a local development work-flow. It doesn't explain what Docker is and so
+for more information about that, read the Docker **[docs](https://docs.docker.com/)**.
 
-This document describes how to install and use [Docker](http://docker.com)
-as part of a local development work-flow.
-
-It doesn't explain what Docker is and so for more information about that,
-read the Docker **[docs](https://docs.docker.com/)**.
-
-## Install Docker for Mac
+## Install Docker
 
 It's now possible to install Docker directly on your Mac.
 
@@ -175,7 +172,7 @@ volumes:
 
 ```
 
-### Misc
+#### Connect to Shell
 
 To run a shell command on a specific container:
 
@@ -184,13 +181,3 @@ To run a shell command on a specific container:
 A good example would be to run the shell command on the `php` container
 created by this project. Allowing access to run `composer` to install any
 composer php dependencies.
-
----
-
-### Disclaimer
-
-This project, has been set up to provide the necessary parts of an environment
-using the most simple container possible, however if you want add other
-containers or change the infrastructure.
-
-**Go for it!**
