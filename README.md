@@ -1,9 +1,9 @@
-# Development using Docker
+# Development with Docker
 
-The repository contains a LEMP stack setup in docker for local development on a
-Mac and documentation describing how to install and use [Docker](http://docker.com)
-as part of a local development work-flow. It doesn't explain what Docker is and so
-for more information about that, read the Docker **[docs](https://docs.docker.com/)**.
+The repository contains a LEMP stack for docker compose, for Mac and documentation
+describing how to install and use [Docker](http://docker.com) as part of a local
+development work-flow. It doesn't explain what Docker is and so for more information
+about that, read the Docker **[docs](https://docs.docker.com/)**.
 
 ## Install Docker
 
@@ -135,7 +135,7 @@ while because docker needs to download the images and build the containers.
 
 ### Connect
 
-By default this project will be served on the address: [localhost](http://localhost)\
+By default this project will be served on the address: [localhost](http://localhost)
 
 #### Connect the database
 

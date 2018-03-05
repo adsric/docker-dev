@@ -15,6 +15,7 @@ RUN apt-get update \
 	&& docker-php-ext-install -j$(nproc) \
 		curl \
 		intl \
+		gettext \
 		json \
 		mbstring \
 		mysqli \
