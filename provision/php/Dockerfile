@@ -7,9 +7,9 @@ RUN apt-get update \
 		libfreetype6-dev \
 		libicu-dev \
 		libjpeg62-turbo-dev \
-		libpng12-dev \
 		libxml2-dev \
-		libz-dev \
+		libpng-dev \
+		libzip-dev \
 		less \
 		mysql-client \
 	&& docker-php-ext-install -j$(nproc) \
@@ -27,7 +27,7 @@ RUN apt-get update \
 	&& docker-php-ext-install -j$(nproc) gd \
 	&& pecl install xdebug \
 	&& docker-php-ext-enable xdebug \
-	&& apt-get remove -y build-essential libz-dev \
+	&& apt-get remove -y build-essential libzip-dev \
 	&& apt-get autoremove -y \
 	&& apt-get clean
 
