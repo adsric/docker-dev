@@ -1,8 +1,8 @@
-# Development with Docker
+# A local development tool powered with Docker
 
-The repository contains a LEMP stack for docker compose, for Mac and documentation
-describing how to install and use [Docker](http://docker.com) as part of a local
-development work-flow. It doesn't explain what Docker is and so for more information
+This tool contains a web server with nginx, php7+ and MariaDB for docker compose.
+
+For macOS and documentation describing how to install and use [Docker](http://docker.com). It doesn't explain what Docker is and so for more information
 about that, read the Docker **[docs](https://docs.docker.com/)**.
 
 ## Install Docker
@@ -41,9 +41,9 @@ So, use `docker-compose`...
  **[docs](https://docs.docker.com/engine/reference/commandline/#the-docker-commands)**
  on the commands.
 
-## Add Docker to your project
+## Add to your project
 
-If you respect the _project structure_, using Docker is extremely simple:
+If you respect the _structure_, using this tool is extremely simple:
 
 1. Create a `docker-compose.yml` (see below) in your `root` project.
 2. Start docker with `docker-compose up -d`
@@ -58,8 +58,8 @@ If you respect the _project structure_, using Docker is extremely simple:
 
 ## Using Docker (compose), for every day
 
-We use `docker-compose` to create the development environment for our projects.
-That's a utility provided by Docker to prepare a bundle of containers and those interactions (Ports, Volumes).
+We use `docker-compose` to create the environment for our projects, a utility
+provided by docker to prepare containers and those interactions (Ports, Volumes).
 
 #### `docker-compose.yml`:
 
@@ -118,14 +118,14 @@ In the last two, we set 2 folders as volumes for: `www` and `database`.
 > For more information look at the **[docs](https://docs.docker.com/compose/overview/)**
  on compose.
 
-#### `provision`:
+#### Setup (provision):
 
-A directory containing the configurations required for `docker-compose`
+The directory containing the configurations required for `docker-compose`
 to set up the `php` and `web` containers.
 
 ### Start / Stop
 
-* Go on the root of your project and `docker-compose build` to create to container images.
+* Go to the root of your project and `docker-compose build` to create to container images.
 * then use `docker-compose up -d` to start your docker project (in background with `-d` option)
 * You can type `docker logs -f` to show the flow of logs during your work session
 * and `docker-compose down` to stop the containers.
@@ -135,7 +135,7 @@ while because docker needs to download the images and build the containers.
 
 ### Connect
 
-By default this project will be served on the address: [localhost](http://localhost)
+By default this tool will be served on the address: [localhost](http://localhost)
 
 #### Connect the database
 
@@ -147,32 +147,30 @@ By default this project will be served on the address: [localhost](http://localh
 _OR_ edit the `docker-compose.yml` with your desired configuration.
 
 Because we are using **Docker for Mac**, the database is available
-at localhost:3306 for applications like "Sequel Pro".
+at localhost:3306 for applications like _Sequel Pro_.
 
-#### Creating database dumps
+#### Database dumps
 
-The command is:
+Using the command:
 
 `docker exec mariadb-container sh -c 'exec mysqldump --all-databases -uroot -p "$MYSQL_ROOT_PASSWORD"' > /some/path/on/your/host/all-databases.sql`
 
-The command to create a dump for docker_dev is:
+The command to create a dump for database docker_dev is:
 
-`docker exec mariadb-container sh -c 'exec mysqldump --databases "docker_dev" -uroot -p "docker"' > /some/path/on/your/host/database.sql
+`docker exec mariadb-container sh -c 'exec mysqldump --databases "docker_dev" -uroot -p "docker"' > /some/path/on/your/host/database.sql`
 
-#### Persistent database data
+#### Persistent Database data
 
-For persistent database edit the `docker-compose.yml` and amend with the
-configuration below.
+For a persistent database edit the `docker-compose.yml` and amend with the following:
 
 ```
-
 volumes:
   - "./database/dump:/docker-entrypoint-initdb.d"
   - "./database/db:/var/lib/mysql"
 
 ```
 
-#### Connect to Shell
+#### Shell access
 
 To run a shell command on a specific container:
 
